@@ -1,0 +1,63 @@
+
+<div class="row" id="translateForm">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="span6">
+            <input class="form-control" [(ngModel)]="searchQuery" placeholder="Search for Venue">
+        </div>
+        <br>
+        <div class="span6"  style="text-align: -webkit-center;">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click)="searchVenues(searchQuery)"><span class="glyphicon glyphicon-search"></span>     Find Venue</button>
+        </div>
+    </div>
+</div>
+<div  *ngIf="searching" style="text-align: -webkit-center;">
+    <md-spinner></md-spinner>
+</div>
+<div  *ngIf="!searching" style="text-align: -webkit-center;">
+    <h3> {{errorMessage}} </h3>
+</div>
+
+<div id="resultsView">
+    <div id="results" style="position: relative;">
+        <ul class="recommendationList">
+            <li class="card singleRecommendation hasPhoto leftPhotoLayout" *ngFor="let item of venues; let index=index" data-id="4d59274a3281b1f7deb0b72f">
+                <div class="contentHolder">
+                    <div class="photoCol">
+                        <div class="photoContainer"><img class="photo" src="{{imgArr[index]}}" photo-id="51996f8f498e7545efeb7b9a" width="300" height="300" alt="" data-retina-url="https://igx.4sqi.net/img/general/600x600/12798316_rjVljTzjUg9zjEinp1M0ggVRFDpsduweBzbOHKC2EEc.jpg"></div>
+                    </div>
+                    <div class="infoCol">
+                        <div class="venueBlock">
+                            <div class="venueDetails">
+                                <div class="venueScore positive" [ngStyle]="{'background-color':item.venue.categories.rating}" title="" >{{item.venue.rating}}</div>
+                                <div class="venueName">
+                                    <h2><span class="venueIndex">{{index+1}}</span>. <a href="{{item.venue.url}}" target="_blank">{{item.venue.name}}</a></h2>
+                                </div>
+                                <div class="venueMeta">
+                                    <div class="venueAddressData">
+                                        <div class="venueData">
+                                            <span class="venueDataItem">
+                                                <span class="categoryName">
+                                                    {{item.venue.categories[0].name}}
+                                                </span>
+                                                <span class="delim"> • </span>
+
+                                            </span>
+                                            <span class="venueDataItem">
+                                                <span class="price" title="">
+                                                    <span class="darken" itemprop="priceRange">$$</span>$$</span>
+                                                <span class="delim"> • </span>
+
+                                            </span>
+                                            <!--<span class="linkToMenu venueDataItem"><a class="menuLink" href="https://foursquare.com/v/doughnut-plant/4d59274a3281b1f7deb0b72f/menu" target="_blank">View Menu</a><span class="delim"> • </span></span>-->
+                                        </div>
+                                        <div class="venueAddress">{{item.venue.location.address}}{{item.venue.location.contextLine}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
